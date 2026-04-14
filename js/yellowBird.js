@@ -6,10 +6,10 @@ class YellowBird {
         this.node.src = "/img/sprites/maincar/maincharacter.png";
         gameBoxNode.append(this.node);
 
-        this.x = 650;
-        this.y = 500;
-        this.width = 400;
-        this.height = 280;
+        this.x = 800;
+        this.y = 600;
+        this.width = 200;
+        this.height = 140;
 
         this.node.style.width = `${this.width}px`;
         this.node.style.height = `${this.height}px`;
@@ -17,8 +17,7 @@ class YellowBird {
         this.node.style.top = `${this.y}px`;
         this.node.style.left = `${this.x}px`;
 
-        this.gravitySpeed = 2;
-        this.jumpSpeed = 40;
+
     }
 forward() {
     const maxX = gameBoxNode.offsetWidth - this.width; // borde derecho
