@@ -1,4 +1,4 @@
-<h1> YellowBord-Run </h1>
+<h1> YellowBird-Run </h1>
 
 Inspired by the classic arcade spirit of Out Run, this game delivers a fast-paced driving experience where precision and reflexes are key. Players take control of a high-speed car racing along endless roads, shifting left and right to dodge incoming traffic and obstacles.
 
