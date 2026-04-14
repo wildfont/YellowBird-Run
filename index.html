@@ -1,14 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
 
-    <h1>Hello</h1>
-    <script src="script.js" ></script>
+    <!-- START SCREEN -->
+    <div id="start-screen" class="container">
+                  <h1>YellowBird Run</h1>
+
+      <img id="salpicadero" src="/img/menu /Rennline_30050__05635 copia.png">
+        <img id="start-btn" src="img/menu /start.png">
+    </div>
+    
+    <!-- GAME SCREEN -->
+    <div id="game-screen" class="container">
+      <!-- Game elements like score, lifes and other ui elements should be here (inside the game-screen but outside the game-box) -->
+
+      <div id="game-box">
+        <!-- Game elements will be added here via javascript and DOM manipulation -->
+      </div>
+      
+    </div>
+    
+    <!-- GAME OVER SCREEN -->
+    <div id="game-over-screen" class="container">
+      <img src="./images/gameover.png" width="500" alt="logo">
+    </div>
+    
+    
+    <script src="/js/script.js"></script>
+    <script src="/js/menu.js"></script>
+    <script src="/js/yellowBird.js"></script>
+
 </body>
 </html>
