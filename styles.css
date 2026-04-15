@@ -58,7 +58,7 @@ body {
 }
 
 #start-btn:hover {
-    content: url("img/menu /startHover.png"); /* imagen al pasar el ratón */
+    content: url("img/menu /startHover.png");
 }
 
 #game-box {
@@ -68,14 +68,13 @@ body {
   height:800px;
   align-content: center;
 
-  position: relative; /* allows us to position inner elements (absolute) related the the game-box */
-  overflow: hidden; /* prevents elements to visually exit the game-box */
-  user-select: none; /* prevents elements inside the game-box to be highlighted. This improves the user experience for click events on the game-box */
-
+  position: relative;
+  overflow: hidden;
+  user-select: none; 
 }
 
 #game-box * {
-  pointer-events: none; /* prevents elements in the game-box to be dragged. This improves the user experience for click events on the game-box  */
+  pointer-events: none; 
 }
 
 #game-screen, #game-over-screen{
