@@ -40,6 +40,8 @@ class YellowBird {
       this.node.src = "/img/sprites/maincar/maincharacter2.png";
     } else if (this.lives <= 0) {
       this.node.src = "/img/sprites/maincar/maincharacter3.png";
+      this.node.style.width= "200px";
+      this.node.style.height = "180px"
       return;
     }
 

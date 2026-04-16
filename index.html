@@ -13,35 +13,43 @@
     />
   </head>
   <body>
-
     <!-- START SCREEN -->
     <div id="start-screen" class="container">
-                  <h1>YellowBird Run</h1>
-
-      <img id="salpicadero" src="/img/menu /salpicadero.png">
-        <img id="start-btn" src="img/menu /start.png">
+      <h1>YellowBird Run</h1>
+      <img id="salpicadero" src="/img/menu /salpicadero.png" />
+      <img id="start-btn" src="img/menu /start.png" />
     </div>
-    
+
     <!-- GAME SCREEN -->
     <div id="game-screen" class="container">
-      <!-- Game elements like score, lifes and other ui elements should be here (inside the game-screen but outside the game-box) -->
+
+      <!-- Reproductor de música -->
+      <div id="music-player">
+        <button id="music-prev" class="music-btn">&#9664;</button>
+        <span id="music-title">─</span>
+        <button id="music-next" class="music-btn">&#9654;</button>
+      </div>
 
       <div id="game-box">
         <!-- Game elements will be added here via javascript and DOM manipulation -->
       </div>
-      
     </div>
-    
+
     <!-- GAME OVER SCREEN -->
     <div id="game-over-screen" class="container">
-      <img src="./images/gameover.png" width="500" alt="logo">
+      <h1 id="gameoverh1">GAME OVER</h1>
+      <button id="newRunButton">NEW RUN</button>
     </div>
-    
-    
+
+    <script src="/js/sounds.js"></script>
     <script src="/js/enemies.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/menu.js"></script>
     <script src="/js/yellowBird.js"></script>
 
-</body>
+    <script>
+      document.getElementById("music-prev").addEventListener("click", () => MusicPlayer.prev());
+      document.getElementById("music-next").addEventListener("click", () => MusicPlayer.next());
+    </script>
+  </body>
 </html>

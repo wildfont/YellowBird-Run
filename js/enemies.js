@@ -3,38 +3,10 @@ let spawnInterval = null;
 let enemySpeed = 3;
 
 const ENEMY_TYPES = [
-  {
-    name: "ferrari",
-    src: "./img/sprites/ferrari.png",
-    width: 140,
-    height: 80,
-    speedMultiplier: 1.2,
-    points: 30,
-  },
-  {
-    name: "truck",
-    src: "./img/sprites/truck.png",
-    width: 180,
-    height: 200,
-    speedMultiplier: 0.6,
-    points: 50,
-  },
-  {
-    name: "bike",
-    src: "./img/sprites/kawasaki.png",
-    width: 80,
-    height: 100,
-    speedMultiplier: 1.5,
-    points: 40,
-  },
-  {
-    name: "car",
-    src: "./img/sprites/bronco.png",
-    width: 130,
-    height: 110,
-    speedMultiplier: 1.0,
-    points: 10,
-  },
+  { name: "ferrari", src: "./img/sprites/ferrari.png", width: 140, height: 80, speedMultiplier: 1.2 },
+  { name: "truck", src: "./img/sprites/truck.png", width: 180, height: 200, speedMultiplier: 0.6 },
+  { name: "bike", src: "./img/sprites/kawasaki.png", width: 80, height: 100, speedMultiplier: 1.5 },
+  { name: "car", src: "./img/sprites/bronco.png", width: 130, height: 110, speedMultiplier: 1.0 },
 ];
 
 class Enemy {
@@ -48,8 +20,6 @@ class Enemy {
     this.x = Math.random() * (gameBoxNode.offsetWidth - this.width);
     this.y = 300;
     this.speed = (enemySpeed + Math.random() * 1.5) * type.speedMultiplier;
-    this.points = type.points;
-
 
     this.node.style.position = "absolute";
     this.node.style.width = `${this.width}px`;
@@ -61,9 +31,9 @@ class Enemy {
   }
 
   update() {
-  this.y += this.speed;
-  this.node.style.top = `${this.y}px`;
-}
+    this.y += this.speed;
+    this.node.style.top = `${this.y}px`;
+  }
 
   isOffScreen() {
     return this.y > gameBoxNode.offsetHeight + this.height;
@@ -89,7 +59,6 @@ class Enemy {
   }
 }
 
-
 function pickRandomType() {
   const weights = [15, 10, 20, 55];
   const total = weights.reduce((a, b) => a + b, 0);
@@ -104,8 +73,7 @@ function pickRandomType() {
 function startEnemySpawner() {
   if (spawnInterval) clearInterval(spawnInterval);
   spawnInterval = setInterval(() => {
-    const type = pickRandomType();
-    enemies.push(new Enemy(type));
+    enemies.push(new Enemy(pickRandomType()));
   }, 1500);
 }
 
@@ -127,7 +95,7 @@ function updateEnemies(bird, onCollision) {
     if (bird && enemy.collidesWithBird(bird)) {
       enemy.remove();
       enemies.splice(i, 1);
-      if (typeof onCollision === "function") onCollision(enemy.points);
+      if (typeof onCollision === "function") onCollision();
       continue;
     }
 
@@ -136,8 +104,4 @@ function updateEnemies(bird, onCollision) {
       enemies.splice(i, 1);
     }
   }
-}
-
-function increaseEnemySpeed(amount = 0.5) {
-  enemySpeed = Math.min(enemySpeed + amount, 12);
 }

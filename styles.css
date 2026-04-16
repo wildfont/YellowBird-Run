@@ -1,18 +1,12 @@
 h1 {
-    color: rgb(255, 225, 0);
-    font-size: 100px;
-    top: 50px;
-    font-family: "Jersey 25";
-    text-align: center;
-    position: absolute;
-    z-index: 1;
-    text-shadow: 5px 5px 4px rgba(0,0,0,0.5);
-}
-
-.jersey-25-regular {
-  font-family: "Jersey 25", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+  color: rgb(255, 225, 0);
+  font-size: 100px;
+  top: 50px;
+  font-family: "Jersey 25";
+  text-align: center;
+  position: absolute;
+  z-index: 1;
+  text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -32,64 +26,127 @@ body {
   margin: 0;
 }
 
-#start-screen{
-    background-image: url(/img/background/bg.png);
-    background-size: cover;
-    width: 1200px;
-    height: 800px;
-
-    position: relative;
-    overflow: hidden;
-    user-select: none;
-
+#start-screen {
+  background-image: url(/img/background/bg.png);
+  background-size: cover;
+  width: 1200px;
+  height: 800px;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
 }
 
-#salpicadero{
-    position: absolute;
-    bottom: -200px;
-    width: 100%;
+#salpicadero {
+  position: absolute;
+  bottom: -200px;
+  width: 100%;
 }
+
 #start-btn {
-    position: absolute;
-    right: 50px;
-    bottom: 20px;
-    z-index: 1;
-
+  position: absolute;
+  right: 50px;
+  bottom: 20px;
+  z-index: 1;
 }
 
 #start-btn:hover {
-    content: url("img/menu /startHover.png");
+  content: url("img/menu /startHover.png");
 }
 
 #game-box {
   background-image: url("img/background/bg.png");
   background-size: cover;
-  width:1200px;
-  height:800px;
+  width: 1200px;
+  height: 800px;
   align-content: center;
-
   position: relative;
   overflow: hidden;
-  user-select: none; 
+  user-select: none;
 }
 
 #game-box * {
-  pointer-events: none; 
+  pointer-events: none;
 }
 
-#game-screen, #game-over-screen{
+#game-screen,
+#game-over-screen {
   display: none;
 }
 
-#game-screen{
-    display: none;
-    width: 1200px;
-    height: 800px;
+#game-screen {
+  width: 1200px;
+  height: 800px;
 }
 
-#car{
-    position: absolute;
-    bottom: 10px;
-    right: 50px;
-    width: 600px;
+#game-over-screen {
+  background-image: url(/img/background/bgGameOver.png);
+  background-size: cover;
+  width: 1200px;
+  height: 800px;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+#gameoverh1 {
+  color: rgb(255, 0, 0);
+  font-size: 100px;
+  top: 50px;
+  font-family: "Jersey 25";
+  text-align: center;
+  position: absolute;
+  z-index: 1;
+  text-shadow: 5px 5px 4px rgba(255, 0, 0, 0.5);
+}
+
+#newRunButton {
+  margin-bottom: -600px;
+  font-family: "Jersey 25";
+  font-size: 30px;
+  background-color: rgb(255, 225, 0);
+  padding: 30px;
+  border-radius: 10px;
+  color: black;
+}
+
+/* ── Reproductor de música ─────────────────────────────────── */
+#music-player {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 2px solid rgb(255, 225, 0);
+  border-radius: 10px;
+  padding: 6px 16px;
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  user-select: none;
+}
+
+#music-title {
+  font-family: "Jersey 25", sans-serif;
+  font-size: 18px;
+  color: rgb(255, 225, 0);
+  min-width: 200px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-btn {
+  background: none;
+  border: none;
+  color: rgb(255, 225, 0);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 2px 6px;
+  transition: transform 0.1s;
+}
+
+.music-btn:hover {
+  transform: scale(1.3);
 }
