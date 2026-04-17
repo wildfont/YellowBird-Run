@@ -1,3 +1,6 @@
+//! All the code implemented in this js is created with IA, i discovered this method to create sounds without implementing mp3 files and i hope you find it interesting too.
+
+
 // ─── YellowBird Run · Sound Engine ───────────────────────────────────────────
 const SoundEngine = (() => {
   let ctx = null;
@@ -27,7 +30,7 @@ const SoundEngine = (() => {
     osc2.frequency.linearRampToValueAtTime(220, now + 1.0);
     osc2.frequency.linearRampToValueAtTime(170, now + duration);
 
-    const bufSize = ac.sampleRate * 0.4;
+    const bufSize = ac.sampleRate * 0.3;
     const noiseBuffer = ac.createBuffer(1, bufSize, ac.sampleRate);
     const data = noiseBuffer.getChannelData(0);
     for (let i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
@@ -40,8 +43,8 @@ const SoundEngine = (() => {
 
     const gainMain = ac.createGain();
     gainMain.gain.setValueAtTime(0, now);
-    gainMain.gain.linearRampToValueAtTime(0.1, now + 0.1);
-    gainMain.gain.linearRampToValueAtTime(0.08, now + duration - 0.2);
+    gainMain.gain.linearRampToValueAtTime(0.05, now + 0.1);
+    gainMain.gain.linearRampToValueAtTime(0.06, now + duration - 0.2);
     gainMain.gain.linearRampToValueAtTime(0, now + duration);
 
     const gainNoise = ac.createGain();
@@ -95,13 +98,13 @@ const SoundEngine = (() => {
     filter.frequency.value = 600;
     filter.Q.value = 1.5;
 
-    const g1 = ac.createGain(); g1.gain.value = 0.1;
-    const g2 = ac.createGain(); g2.gain.value = 0.04;
-    const g3 = ac.createGain(); g3.gain.value = 0.015;
+    const g1 = ac.createGain(); g1.gain.value = 0.05;
+    const g2 = ac.createGain(); g2.gain.value = 0.02;
+    const g3 = ac.createGain(); g3.gain.value = 0.010;
 
     const masterGain = ac.createGain();
     masterGain.gain.setValueAtTime(0, now);
-    masterGain.gain.linearRampToValueAtTime(0.1, now + 0.6);
+    masterGain.gain.linearRampToValueAtTime(0.05, now + 0.03);
 
     osc1.connect(g1); g1.connect(filter);
     osc2.connect(g2); g2.connect(filter);

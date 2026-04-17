@@ -1,7 +1,7 @@
 class YellowBird {
   constructor() {
     this.node = document.createElement("img");
-    this.node.src = "/img/sprites/maincar/maincharacter.png";
+    this.node.src = "./img/sprites/maincar/maincharacter.png";
     gameBoxNode.append(this.node);
     this.width = 200;
     this.height = 140;
@@ -35,11 +35,11 @@ class YellowBird {
     this.lives--;
 
     if (this.lives === 2) {
-      this.node.src = "/img/sprites/maincar/maincharacter.png";
+      this.node.src = "./img/sprites/maincar/maincharacter.png";
     } else if (this.lives === 1) {
-      this.node.src = "/img/sprites/maincar/maincharacter2.png";
+      this.node.src = "./img/sprites/maincar/maincharacter2.png";
     } else if (this.lives <= 0) {
-      this.node.src = "/img/sprites/maincar/maincharacter3.png";
+      this.node.src = "./img/sprites/maincar/maincharacter3.png";
       this.node.style.width= "200px";
       this.node.style.height = "180px"
       return;

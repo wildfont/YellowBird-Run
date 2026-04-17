@@ -1,5 +1,5 @@
 h1 {
-  color: rgb(255, 225, 0);
+  color: #ffe100;
   font-size: 100px;
   top: 50px;
   font-family: "Jersey 25";
@@ -64,7 +64,7 @@ body {
 }
 
 #start-btn:hover {
-  content: url("img/menu /startHover.png");
+  content: url("./img/menu/startHover.png");
 }
 
 #game-box {
@@ -144,7 +144,7 @@ body {
 
 #music-title {
   font-family: "Jersey 25", sans-serif;
-  font-size: 18px;
+  font-size: 22px;
   color: rgb(255, 225, 0);
   min-width: 200px;
   text-align: center;

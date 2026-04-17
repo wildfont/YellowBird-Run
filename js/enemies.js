@@ -3,10 +3,10 @@ let spawnInterval = null;
 let enemySpeed = 3;
 
 const ENEMY_TYPES = [
-  { name: "ferrari", src: "./img/sprites/ferrari.png", width: 190, height: 100, speedMultiplier: 1.1 },
-  { name: "truck", src: "./img/sprites/truck.png", width: 240, height: 266, speedMultiplier: 0.8 },
-  { name: "bike", src: "./img/sprites/kawasaki.png", width: 100, height: 133, speedMultiplier: 1.3 },
-  { name: "car", src: "./img/sprites/bronco.png", width: 175, height: 150, speedMultiplier: 1.0 },
+  { name: "ferrari", src: "./img/sprites/ferrari.png", width: 190, height: 100, speedMultiplier: 1.0 },
+  { name: "truck", src: "./img/sprites/truck.png", width: 240, height: 266, speedMultiplier: 0.7 },
+  { name: "bike", src: "./img/sprites/kawasaki.png", width: 100, height: 133, speedMultiplier: 1.2 },
+  { name: "car", src: "./img/sprites/bronco.png", width: 175, height: 150, speedMultiplier: 0.9 },
 ];
 
 class Enemy {
