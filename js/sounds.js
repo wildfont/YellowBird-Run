@@ -44,7 +44,7 @@ const SoundEngine = (() => {
     const gainMain = ac.createGain();
     gainMain.gain.setValueAtTime(0, now);
     gainMain.gain.linearRampToValueAtTime(0.01, now + 0.1);
-    gainMain.gain.linearRampToValueAtTime(0.012g, now + duration - 0.2);
+    gainMain.gain.linearRampToValueAtTime(0.012, now + duration - 0.2);
     gainMain.gain.linearRampToValueAtTime(0, now + duration);
 
     const gainNoise = ac.createGain();
