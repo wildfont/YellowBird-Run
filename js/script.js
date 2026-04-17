@@ -41,7 +41,6 @@ function handleCollision() {
     stopEnemySpawner();
     clearAllEnemies();
     SoundEngine.stopEngineLoop();
-    MusicPlayer.stop();
 
     setTimeout(() => {
       gameScreen.style.display = 'none';

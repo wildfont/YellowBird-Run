@@ -15,8 +15,6 @@ startBtn.addEventListener("click", function () {
   SoundEngine.playStartup(() => {
     SoundEngine.startEngineLoop();
   });
-
-  MusicPlayer.play(MusicPlayer.currentIndex);
 });
 
 document.getElementById("newRunButton").addEventListener("click", () => {
@@ -28,11 +26,9 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight") {
     event.preventDefault();
     bird.forward();
-    SoundEngine.playRev();
   }
   if (event.key === "ArrowLeft") {
     event.preventDefault();
     bird.backward();
-    SoundEngine.playRev();
   }
 });

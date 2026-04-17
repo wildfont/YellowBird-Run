@@ -43,12 +43,12 @@ const SoundEngine = (() => {
 
     const gainMain = ac.createGain();
     gainMain.gain.setValueAtTime(0, now);
-    gainMain.gain.linearRampToValueAtTime(0.05, now + 0.1);
-    gainMain.gain.linearRampToValueAtTime(0.06, now + duration - 0.2);
+    gainMain.gain.linearRampToValueAtTime(0.01, now + 0.1);
+    gainMain.gain.linearRampToValueAtTime(0.012g, now + duration - 0.2);
     gainMain.gain.linearRampToValueAtTime(0, now + duration);
 
     const gainNoise = ac.createGain();
-    gainNoise.gain.setValueAtTime(0.1, now);
+    gainNoise.gain.setValueAtTime(0.03, now);
     gainNoise.gain.linearRampToValueAtTime(0, now + 0.4);
 
     osc.connect(gainMain);
@@ -170,35 +170,7 @@ const SoundEngine = (() => {
     osc.start(now);  osc.stop(now + 0.3);
   }
 
-  function playRev() {
-    const ac = getCtx();
-    if (ac.state === "suspended") ac.resume();
-    const now = ac.currentTime;
-
-    const osc = ac.createOscillator();
-    osc.type = "sawtooth";
-    osc.frequency.setValueAtTime(90, now);
-    osc.frequency.linearRampToValueAtTime(160, now + 0.12);
-    osc.frequency.linearRampToValueAtTime(95, now + 0.3);
-
-    const gain = ac.createGain();
-    gain.gain.setValueAtTime(0.1, now);
-    gain.gain.linearRampToValueAtTime(0.1, now + 0.08);
-    gain.gain.linearRampToValueAtTime(0, now + 0.3);
-
-    const filter = ac.createBiquadFilter();
-    filter.type = "lowpass";
-    filter.frequency.value = 700;
-
-    osc.connect(filter);
-    filter.connect(gain);
-    gain.connect(ac.destination);
-
-    osc.start(now);
-    osc.stop(now + 0.3);
-  }
-
-  return { playStartup, startEngineLoop, stopEngineLoop, playCollision, playRev };
+  return { playStartup, startEngineLoop, stopEngineLoop, playCollision };
 })();
 
 
@@ -228,7 +200,7 @@ const MusicPlayer = (() => {
     if (audio) { audio.pause(); audio.src = ""; }
     currentIndex = ((index % tracks.length) + tracks.length) % tracks.length;
     audio = new Audio(tracks[currentIndex].file);
-    audio.volume = 0.1;
+    audio.volume = 0.03;
     audio.loop = false;
     audio.play();
     audio.addEventListener("ended", () => play(currentIndex + 1));
@@ -246,7 +218,7 @@ const MusicPlayer = (() => {
     if (!isPreviewing) {
       if (audio) { audio.pause(); audio.src = ""; }
       audio = new Audio(tracks[currentIndex].file);
-      audio.volume = 0.1;
+      audio.volume = 0.04;
       audio.loop = false;
       audio.play();
       audio.addEventListener("ended", () => {
