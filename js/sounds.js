@@ -9,7 +9,6 @@ const SoundEngine = (() => {
     return ctx;
   }
 
-  // ── 1. ARRANQUE DEL MOTOR ─────────────────────────────────────────────────
   function playStartup(onDone) {
     const ac = getCtx();
     if (ac.state === "suspended") ac.resume();
@@ -41,12 +40,12 @@ const SoundEngine = (() => {
 
     const gainMain = ac.createGain();
     gainMain.gain.setValueAtTime(0, now);
-    gainMain.gain.linearRampToValueAtTime(0.14, now + 0.1);
-    gainMain.gain.linearRampToValueAtTime(0.11, now + duration - 0.2);
+    gainMain.gain.linearRampToValueAtTime(0.1, now + 0.1);
+    gainMain.gain.linearRampToValueAtTime(0.08, now + duration - 0.2);
     gainMain.gain.linearRampToValueAtTime(0, now + duration);
 
     const gainNoise = ac.createGain();
-    gainNoise.gain.setValueAtTime(0.15, now);
+    gainNoise.gain.setValueAtTime(0.1, now);
     gainNoise.gain.linearRampToValueAtTime(0, now + 0.4);
 
     osc.connect(gainMain);
@@ -62,7 +61,6 @@ const SoundEngine = (() => {
     if (typeof onDone === "function") setTimeout(onDone, duration * 1000);
   }
 
-  // ── 2. MOTOR EN MARCHA (loop) ─────────────────────────────────────────────
   function startEngineLoop() {
     if (isRunning) return;
     const ac = getCtx();
@@ -97,13 +95,13 @@ const SoundEngine = (() => {
     filter.frequency.value = 600;
     filter.Q.value = 1.5;
 
-    const g1 = ac.createGain(); g1.gain.value = 0.18;
-    const g2 = ac.createGain(); g2.gain.value = 0.08;
-    const g3 = ac.createGain(); g3.gain.value = 0.03;
+    const g1 = ac.createGain(); g1.gain.value = 0.1;
+    const g2 = ac.createGain(); g2.gain.value = 0.04;
+    const g3 = ac.createGain(); g3.gain.value = 0.015;
 
     const masterGain = ac.createGain();
     masterGain.gain.setValueAtTime(0, now);
-    masterGain.gain.linearRampToValueAtTime(1, now + 0.6);
+    masterGain.gain.linearRampToValueAtTime(0.1, now + 0.6);
 
     osc1.connect(g1); g1.connect(filter);
     osc2.connect(g2); g2.connect(filter);
@@ -115,7 +113,6 @@ const SoundEngine = (() => {
     engineNodes = { osc1, osc2, osc3, lfo, masterGain };
   }
 
-  // ── 3. PARAR MOTOR ────────────────────────────────────────────────────────
   function stopEngineLoop() {
     if (!isRunning || !engineNodes) return;
     const ac = getCtx();
@@ -130,7 +127,6 @@ const SoundEngine = (() => {
     }, 600);
   }
 
-  // ── 4. SONIDO DE COLISIÓN ─────────────────────────────────────────────────
   function playCollision() {
     const ac = getCtx();
     if (ac.state === "suspended") ac.resume();
@@ -154,11 +150,11 @@ const SoundEngine = (() => {
     osc.frequency.exponentialRampToValueAtTime(30, now + 0.3);
 
     const gainNoise = ac.createGain();
-    gainNoise.gain.setValueAtTime(0.7, now);
+    gainNoise.gain.setValueAtTime(0.1, now);
     gainNoise.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
 
     const gainOsc = ac.createGain();
-    gainOsc.gain.setValueAtTime(0.4, now);
+    gainOsc.gain.setValueAtTime(0.1, now);
     gainOsc.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
 
     noise.connect(filter);
@@ -171,7 +167,6 @@ const SoundEngine = (() => {
     osc.start(now);  osc.stop(now + 0.3);
   }
 
-  // ── 5. REVOLUCIÓN AL MOVER ────────────────────────────────────────────────
   function playRev() {
     const ac = getCtx();
     if (ac.state === "suspended") ac.resume();
@@ -184,8 +179,8 @@ const SoundEngine = (() => {
     osc.frequency.linearRampToValueAtTime(95, now + 0.3);
 
     const gain = ac.createGain();
-    gain.gain.setValueAtTime(0.15, now);
-    gain.gain.linearRampToValueAtTime(0.22, now + 0.08);
+    gain.gain.setValueAtTime(0.1, now);
+    gain.gain.linearRampToValueAtTime(0.1, now + 0.08);
     gain.gain.linearRampToValueAtTime(0, now + 0.3);
 
     const filter = ac.createBiquadFilter();
@@ -207,43 +202,84 @@ const SoundEngine = (() => {
 // ─── YellowBird Run · Music Player ───────────────────────────────────────────
 const MusicPlayer = (() => {
   const tracks = [
-    { title: "El Cocaino",        file: "/sounds/BSO/ElCocaino.mp3" },
+    { title: "El Cocaino",         file: "/sounds/BSO/ElCocaino.mp3" },
     { title: "Running in the 90s", file: "/sounds/BSO/RunningInThe90s.mp3" },
     { title: "Sultans of Swing",   file: "/sounds/BSO/SultansOfSwing.mp3" },
   ];
 
   let currentIndex = 0;
   let audio = null;
+  let isPreviewing = false;
   const titleEl = document.getElementById("music-title");
+  const playBtn = document.getElementById("music-play");
 
   function updateUI() {
     if (titleEl) titleEl.textContent = tracks[currentIndex].title;
+    if (playBtn) {
+      playBtn.textContent = isPreviewing ? "⏸" : "▶";
+      playBtn.classList.toggle("playing", isPreviewing);
+    }
   }
 
   function play(index) {
-    if (audio) {
-      audio.pause();
-      audio.src = "";
-    }
+    if (audio) { audio.pause(); audio.src = ""; }
     currentIndex = ((index % tracks.length) + tracks.length) % tracks.length;
     audio = new Audio(tracks[currentIndex].file);
-    audio.volume = 0.6;
+    audio.volume = 0.1;
     audio.loop = false;
     audio.play();
     audio.addEventListener("ended", () => play(currentIndex + 1));
+    isPreviewing = false;
     updateUI();
   }
 
   function stop() {
-    if (audio) {
-      audio.pause();
-      audio.src = "";
-      audio = null;
+    if (audio) { audio.pause(); audio.src = ""; audio = null; }
+    isPreviewing = false;
+    updateUI();
+  }
+
+  function togglePreview() {
+    if (!isPreviewing) {
+      if (audio) { audio.pause(); audio.src = ""; }
+      audio = new Audio(tracks[currentIndex].file);
+      audio.volume = 0.1;
+      audio.loop = false;
+      audio.play();
+      audio.addEventListener("ended", () => {
+        isPreviewing = false;
+        updateUI();
+      });
+      isPreviewing = true;
+    } else {
+      if (audio) { audio.pause(); audio.src = ""; audio = null; }
+      isPreviewing = false;
     }
+    updateUI();
+  }
+
+  function selectPrev() {
+    const wasPlaying = isPreviewing;
+    if (audio) { audio.pause(); audio.src = ""; audio = null; }
+    isPreviewing = false;
+    currentIndex = ((currentIndex - 1) % tracks.length + tracks.length) % tracks.length;
+    updateUI();
+    if (wasPlaying) togglePreview();
+  }
+
+  function selectNext() {
+    const wasPlaying = isPreviewing;
+    if (audio) { audio.pause(); audio.src = ""; audio = null; }
+    isPreviewing = false;
+    currentIndex = ((currentIndex + 1) % tracks.length + tracks.length) % tracks.length;
+    updateUI();
+    if (wasPlaying) togglePreview();
   }
 
   function next() { play(currentIndex + 1); }
   function prev() { play(currentIndex - 1); }
 
-  return { play, stop, next, prev };
+  updateUI();
+
+  return { play, stop, next, prev, selectPrev, selectNext, togglePreview, get currentIndex() { return currentIndex; } };
 })();

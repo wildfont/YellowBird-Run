@@ -8,6 +8,7 @@ startBtn.addEventListener("click", function () {
   gameScreen.style.display = "flex";
   bird = new YellowBird();
   startEnemySpawner();
+  startScore();
   gameRunning = true;
   gameLoop();
 
@@ -15,7 +16,7 @@ startBtn.addEventListener("click", function () {
     SoundEngine.startEngineLoop();
   });
 
-  MusicPlayer.play(0);
+  MusicPlayer.play(MusicPlayer.currentIndex);
 });
 
 document.getElementById("newRunButton").addEventListener("click", () => {
