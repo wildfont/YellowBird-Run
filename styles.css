@@ -68,7 +68,7 @@ body {
 }
 
 #game-box {
-  background-image: url("./img/background/bg.gif");
+  background-image: url("./img/background/bg.png");
   background-size:150%;
   background-position: center -210px;
   width: 1200px;
